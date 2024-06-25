@@ -50,13 +50,17 @@ dest_sec4.addEventListener("click", () => {
 
 //Getting components id's and classes
 let friends = document.getElementById('friends')
+let recommendations = document.querySelector('.carousel-inner')
 
 //Fechting and implementing db.json for colleagues and recommendations infos 
-async function loadFriendsData(){
-    const response = await fetch("/db/db.json");
-    const data = await response.json();
 
-    data.colegas.forEach(colega => {
+async function loadData(){
+    const responsejson = await fetch("/db/db.json");
+    const datajson = await responsejson.json();
+    //Tests:
+    console.log(datajson)
+    
+    datajson.colegas.forEach(colega => {
         friends.innerHTML += `
         <div class="friend">
             <img src="${colega.photo}" alt="...">
@@ -69,6 +73,41 @@ async function loadFriendsData(){
       </div>
       `
     })
+
+    var index = 0;
+    datajson.recomendacoes.forEach(recom =>{
+        if(index == 0){
+        recommendations.innerHTML += `
+            <div class="carousel-item active">
+                <img src="${recom.imgpath}" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>${recom.title}</h5>
+                    <p>${recom.description}</p>
+                </div>
+            </div>
+        `
+        }
+        if(index != 0){
+            recommendations.innerHTML += `
+            <div class="carousel-item">
+                <img src="${recom.imgpath}" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>${recom.title}</h5>
+                    <p>${recom.description}</p>
+                </div>
+            </div>
+            `
+        }
+        
+        //Tests
+        console.log(recom.title)
+        console.log(recom.imgpath)
+        index++;
+    })
+    
 }
-loadFriendsData();
+
+loadData();
+
+
 

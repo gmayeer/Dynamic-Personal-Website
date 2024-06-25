@@ -1,27 +1,27 @@
 {
     "recomendacoes": [
         {
-            "img-path": "C:/Users/1506667/Documents/GitHub/Dynamic-Personal-Website/public/assets/img/CSGO.jpg",
+            "imgpath": "assets/img/CSGO.jpg",
             "title": "COUNTER STRIKE:GLOBAL OFFENSIVE",
             "description": "O jogo que me introduziu ao mundo competitivo dos e-sports, muita carga emocional envolvida neste jogo, além de ser cotado como o maior jogo de tiro da história."
         },
         {
-            "img-path": "C:/Users/1506667/Documents/GitHub/Dynamic-Personal-Website/public/assets/img/Fortnite att.jpg",
+            "imgpath": "assets/img/Fortnite att.jpg",
             "title": "FORTNITE:BATTLE ROYALE",
             "description": "O jogo que eu entrei de cabeça no cenário competitivo, faturando U$2.000,00 ao longo de 2 anos jogando e treinando incessantemente."
         },
         {
-            "img-path": "C:/Users/1506667/Documents/GitHub/Dynamic-Personal-Website/public/assets/img/R6.jfif",
+            "imgpath": "assets/img/R6.jfif",
             "title": "TOM CLANCY'S RAINBOW SIX SIEGE",
             "description": "Após minha \"quaresma\" de 1 ano dos jogos online, voltei para jogar de forma casual e o R6 me recebeu perfeitamente, muito legal."
         },
         {
-            "img-path": "C:/Users/1506667/Documents/GitHub/Dynamic-Personal-Website/public/assets/img/Fifa 14.jpg",
+            "imgpath": "assets/img/Fifa14.jpg",
             "title": "FIFA 14",
             "description": "O primeiro jogo que passei horas e horas jogando. Meu PS3 gritava de tantas horas ligadas, com certeza o jogo com maior carga emocional para mim"
         },
         {
-            "img-path": "C:/Users/1506667/Documents/GitHub/Dynamic-Personal-Website/public/assets/img/Minecraft.jpg",
+            "imgpath": "assets/img/Minecraft.jpg",
             "title": "MINECRAFT",
             "description": "O jogo da minha infância, dos meus 8 aos meus 11 anos virava noites jogando e assistindo vídeos sobre."
         }
