@@ -15,20 +15,13 @@ function getParams(){
 async function loadData(){
     const actualParams = getParams();
     const repoName = actualParams.repo;
-    if(!repoName){
-        repoBox.innerHTML = "<p>Não foi possível encontrar esse repositório</p>";
-        return;
-    }
+    
     
     const response = await fetch('https://api.github.com/users/gmayeer/repos')  
     const data = await response.json()
     console.log(data)
     
     const repo = data.find(r => r.name === repoName);
-    if(!repo){
-        repoBox.innerHTML += "<p>Não foi possível encontrar esse repositório</p>";
-        return;
-    }
     
     repoBox.innerHTML += `
         <h4>
@@ -52,7 +45,7 @@ async function loadData(){
         </h6>
         <p><a href="${repo.html_url}" target="_blank">Clique aqui</a></p>
       </div>
-    `
+    `;
 }
 
 loadData();
