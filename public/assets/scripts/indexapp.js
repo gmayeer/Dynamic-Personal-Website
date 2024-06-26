@@ -62,6 +62,11 @@ let myFollowers = document.querySelector('.followers')
 
 let repocard = document.querySelector('.card')
 let repopage = "repo.html"
+let icons = {
+    1: "public/assets/img/Repo1LOGO.jpg",
+    4: "public/assets/img/Repo2LOGO.png",
+    9: "public/assets/img/Repo3LOGO.jpg"
+};
 //Fetching github's API JSON informations and implementing them on my profile in the website
 
 async function loadDataAPI(){
@@ -89,20 +94,18 @@ async function loadDataAPI(){
     //Tests:
     console.log(datarepos)
 
-    indexRepos = 0;
-    datarepos.forEach(repo => {
+    datarepos.forEach((repo, indexRepos) => {
         if(indexRepos == 1 || indexRepos == 4 || indexRepos == 9){
+            repoIcon = icons[indexRepos];
             repocard.innerHTML += `
             <a href="${repopage}">
-                <img src="${repo./*ACHAR CAMINHO JSON DA FOTO DO REPOSITORIO*/}" class="card-img-top" alt="...">
+                <img src="${repoIcon}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <p class="card-text">${repo.description}</p>
                     <span>0 <i class="ph ph-user"></i></span> <span>5 <i class="ph ph-star"></i></span>
                 </div>
           </a>`
         }
-        
-        indexRepos++;
     })
 }
 
