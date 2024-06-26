@@ -48,35 +48,84 @@ dest_sec4.addEventListener("click", () => {
 
 //PAGE CONTENT(start)
 
+//GITHUB'S API manipulation'
+//Getting components id's and classes
+let myPicture = document.querySelector('.pfp')
+let myName = document.querySelector('.nome')
+let myBio = document.querySelector('.introducao')
+let myPosition = document.querySelector('.location')
+let myInsta = document.querySelector('.instagram')
+let myLinkedin = document.querySelector('.linkedin')
+let myGitLink = document.querySelector('.github')
+let myFollowers = document.querySelector('.followers')
+//Fetching github's API JSON informations and implementing them on my profile in the website
+
+async function loadDataAPI(){
+    //Profile Fetching
+    const responseapi = await fetch("https://api.github.com/users/gmayeer");
+    const dataapi = await responseapi.json();
+    //Tests:
+    console.log(dataapi)
+    
+    myPicture.innerHTML += `<img class="picture" src="${dataapi.avatar_url}">`
+    myName.innerHTML += `${dataapi.name}`
+    myBio.innerHTML += `${dataapi.bio}`
+    myPosition.innerHTML += `📌${dataapi.location}`
+    
+    myInsta.innerHTML += `<a href="https://instagram.com/gmayeer" target="_blank"><img src="assets/img/instagram-logo.svg"></a>`
+    myLinkedin.innerHTML += `<a href="https://www.linkedin.com/in/gabriel-clary-39b6022a5/" target="_blank"><img src="assets/img/linkedin-logo.svg"></a>`
+    myGitLink.innerHTML += `<a href="https://github.com/gmayeer" target="_blank"><img src="assets/img/github-logo.svg"></a>`
+
+    myFollowers.innerHTML += `${dataapi.followers} <i class="ph ph-user-plus"></i>`
+
+}
+
+//JSONServer data manipulation
 //Getting components id's and classes
 let friends = document.getElementById('friends')
 let recommendations = document.querySelector('.carousel-inner')
 
-//Fechting and implementing db.json for colleagues and recommendations infos 
+//Fetching and implementing db.json for colleagues and recommendations infos 
 
-async function loadData(){
+async function loadDataJSON(){
     const responsejson = await fetch("/db/db.json");
     const datajson = await responsejson.json();
     //Tests:
     console.log(datajson)
-    
+    var indexFriends = 0;
     datajson.colegas.forEach(colega => {
-        friends.innerHTML += `
-        <div class="friend">
-            <img src="${colega.photo}" alt="...">
-            <h6 id="friendname">
-                ${colega.name}
-            </h6>
-            <p id="friendinfo">
-                ${colega.about}
-            </p>
-      </div>
-      `
+        if(indexFriends != 2){
+            friends.innerHTML += `
+            <div class="friend">
+                <img src="${colega.photo}" alt="...">
+                <h6 id="friendname">
+                    ${colega.name}
+                </h6>
+                <p id="friendinfo">
+                    <a href="${colega.gitprofile}" class="friendGitLink" target="_blank">->Github</a>
+                </p>
+        </div>
+        `
+        }
+        if(indexFriends == 2){
+                friends.innerHTML += `
+                <div class="friend">
+                    <img src="${colega.photo}" alt="...">
+                    <h6 id="friendname">
+                        ${colega.name}
+                    </h6>
+                    <p id="friendinfo">
+                        <a href="${colega.gitprofile}" class="friendGitLink" target="_blank">->Github</a>
+                    </p>
+            </div>
+            `
+        }
+        indexFriends++;
     })
 
-    var index = 0;
+    var indexRecom = 0;
     datajson.recomendacoes.forEach(recom =>{
-        if(index == 0){
+        if(indexRecom == 0){
         recommendations.innerHTML += `
             <div class="carousel-item active">
                 <img src="${recom.imgpath}" class="d-block w-100" alt="...">
@@ -87,7 +136,7 @@ async function loadData(){
             </div>
         `
         }
-        if(index != 0){
+        if(indexRecom != 0){
             recommendations.innerHTML += `
             <div class="carousel-item">
                 <img src="${recom.imgpath}" class="d-block w-100" alt="...">
@@ -102,12 +151,8 @@ async function loadData(){
         //Tests
         console.log(recom.title)
         console.log(recom.imgpath)
-        index++;
+        indexRecom++;
     })
-    
 }
-
-loadData();
-
-
-
+loadDataAPI();
+loadDataJSON();

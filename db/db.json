@@ -29,21 +29,21 @@
     "colegas": [
         {
             "id": 1,
-            "photo": "assets/img/milk.jpeg",
+            "photo": "https://avatars.githubusercontent.com/u/164282204?v=4",
             "name": "Pedro Leite",
-            "about": "Um rapaz resguardado da PUC Minas que veio da roça divinopolense para se aventurar no mundo da tecnologia."
+            "gitprofile": "https://github.com/pedroleitep"
         },
         {
             "id": 2,
-            "photo": "assets/img/pires.jpeg",
+            "photo": "https://avatars.githubusercontent.com/u/164805806?v=4",
             "name": "Bernardo Pires",
-            "about": "Um rapaz fiel da PUC Minas que gosta muio de morango com pescoço"
+            "gitprofile": "https://github.com/BernardoPiresMascarenhas"
         },
         {
             "id": 3,
-            "photo": "assets/img/seva.jpeg",
+            "photo": "https://avatars.githubusercontent.com/u/163688467?v=4",
             "name": "Arthur Sevak",
-            "about": "Um rapaz adicto da PUC Minas que não se aguenta 24 horas sem degustar um Mandelli."
+            "gitprofile": "https://github.com/sevak19"
         }
     ]
 }
