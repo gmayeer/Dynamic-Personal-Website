@@ -49,6 +49,7 @@ dest_sec4.addEventListener("click", () => {
 //PAGE CONTENT(start)
 
 //GITHUB'S API manipulation'
+//---------------------------------------------------------
 //Getting components id's and classes
 let myPicture = document.querySelector('.pfp')
 let myName = document.querySelector('.nome')
@@ -58,29 +59,55 @@ let myInsta = document.querySelector('.instagram')
 let myLinkedin = document.querySelector('.linkedin')
 let myGitLink = document.querySelector('.github')
 let myFollowers = document.querySelector('.followers')
+
+let repocard = document.querySelector('.card')
+let repopage = "repo.html"
 //Fetching github's API JSON informations and implementing them on my profile in the website
 
 async function loadDataAPI(){
     //Profile Fetching
-    const responseapi = await fetch("https://api.github.com/users/gmayeer");
-    const dataapi = await responseapi.json();
+    const responseuser = await fetch("https://api.github.com/users/gmayeer");
+    const datauser = await responseuser.json();
     //Tests:
-    console.log(dataapi)
+    //console.log(datauser)
     
-    myPicture.innerHTML += `<img class="picture" src="${dataapi.avatar_url}">`
-    myName.innerHTML += `${dataapi.name}`
-    myBio.innerHTML += `${dataapi.bio}`
-    myPosition.innerHTML += `📌${dataapi.location}`
+    myPicture.innerHTML += `<img class="picture" src="${datauser.avatar_url}">`
+    myName.innerHTML += `${datauser.name}`
+    myBio.innerHTML += `${datauser.bio}`
+    myPosition.innerHTML += `📌${datauser.location}`
     
     myInsta.innerHTML += `<a href="https://instagram.com/gmayeer" target="_blank"><img src="assets/img/instagram-logo.svg"></a>`
     myLinkedin.innerHTML += `<a href="https://www.linkedin.com/in/gabriel-clary-39b6022a5/" target="_blank"><img src="assets/img/linkedin-logo.svg"></a>`
     myGitLink.innerHTML += `<a href="https://github.com/gmayeer" target="_blank"><img src="assets/img/github-logo.svg"></a>`
 
-    myFollowers.innerHTML += `${dataapi.followers} <i class="ph ph-user-plus"></i>`
+    myFollowers.innerHTML += `${datauser.followers} <i class="ph ph-user-plus"></i>`
 
+
+    //Repositories Fetching
+    const responserepos = await fetch("https://api.github.com/users/gmayeer/repos");
+    const datarepos = await responserepos.json();
+    //Tests:
+    console.log(datarepos)
+
+    indexRepos = 0;
+    datarepos.forEach(repo => {
+        if(indexRepos == 1 || indexRepos == 4 || indexRepos == 9){
+            repocard.innerHTML += `
+            <a href="${repopage}">
+                <img src="${repo./*ACHAR CAMINHO JSON DA FOTO DO REPOSITORIO*/}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">${repo.description}</p>
+                    <span>0 <i class="ph ph-user"></i></span> <span>5 <i class="ph ph-star"></i></span>
+                </div>
+          </a>`
+        }
+        
+        indexRepos++;
+    })
 }
 
 //JSONServer data manipulation
+//---------------------------------------------------------
 //Getting components id's and classes
 let friends = document.getElementById('friends')
 let recommendations = document.querySelector('.carousel-inner')
@@ -91,7 +118,7 @@ async function loadDataJSON(){
     const responsejson = await fetch("/db/db.json");
     const datajson = await responsejson.json();
     //Tests:
-    console.log(datajson)
+    //console.log(datajson)
     var indexFriends = 0;
     datajson.colegas.forEach(colega => {
         if(indexFriends != 2){
@@ -149,8 +176,8 @@ async function loadDataJSON(){
         }
         
         //Tests
-        console.log(recom.title)
-        console.log(recom.imgpath)
+        //console.log(recom.title)
+        //console.log(recom.imgpath)
         indexRecom++;
     })
 }
