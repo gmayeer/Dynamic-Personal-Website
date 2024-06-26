@@ -101,7 +101,7 @@ async function loadDataAPI(){
           `
           <div class="col-xl-4 col-lg-6 col-md-12">
             <div class="card" style="width: 20rem; height: 25rem">
-              <a href="${repopage}">
+              <a href="${repopage}?=repo${repo.name}">
                 <img src="${repoIcon}" class="card-img-top" alt="...">
                 <div class="card-body">
                   <p class="card-text">${repo.description}</p>
