@@ -60,12 +60,12 @@ let myLinkedin = document.querySelector('.linkedin')
 let myGitLink = document.querySelector('.github')
 let myFollowers = document.querySelector('.followers')
 
-let repocard = document.querySelector('.card')
+let repocard = document.querySelector('.row')
 let repopage = "repo.html"
 let icons = {
-    1: "public/assets/img/Repo1LOGO.jpg",
-    4: "public/assets/img/Repo2LOGO.png",
-    9: "public/assets/img/Repo3LOGO.jpg"
+    1: "assets/img/Repo1LOGO.jpg",
+    4: "assets/img/Repo2LOGO.png",
+    9: "assets/img/Repo3LOGO.jpg"
 };
 //Fetching github's API JSON informations and implementing them on my profile in the website
 
@@ -97,14 +97,20 @@ async function loadDataAPI(){
     datarepos.forEach((repo, indexRepos) => {
         if(indexRepos == 1 || indexRepos == 4 || indexRepos == 9){
             repoIcon = icons[indexRepos];
-            repocard.innerHTML += `
-            <a href="${repopage}">
+            repocard.innerHTML +=
+          `
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card" style="width: 20rem; height: 25rem">
+              <a href="${repopage}">
                 <img src="${repoIcon}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <p class="card-text">${repo.description}</p>
-                    <span>0 <i class="ph ph-user"></i></span> <span>5 <i class="ph ph-star"></i></span>
+                  <p class="card-text">${repo.description}</p>
+                  <span>${repo.watchers_count} <i class="ph ph-user"></i></span> <span>${repo.stargazers_count} <i class="ph ph-star"></i></span>
                 </div>
-          </a>`
+              </a>
+            </div>
+          </div>
+          `
         }
     })
 }
